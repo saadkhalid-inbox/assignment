@@ -22,7 +22,8 @@ module Converter
                 requires :amount, type: Float
             end
             get :convert do
-                resp = params[:amount] * Converter.convert_eur_to_usd(params)
+                method_sym = "convert_#{params[:currency]}_to_usd".to_sym
+                resp = params[:amount] * Utility::Handler.send(method_sym, params)
                 return {
                     status: 200,
                     converted: "$#{resp}"

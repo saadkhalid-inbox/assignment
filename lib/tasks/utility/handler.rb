@@ -1,5 +1,6 @@
 module Utility
-  module Converter
+  class Handler
+    # include Utility::Converter
     @currencies = Exchange.all
     def self.addCurrency(params)
         find_result = Exchange.find_by title: params[:title]
